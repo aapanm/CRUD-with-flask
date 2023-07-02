@@ -2,4 +2,6 @@
 .vscode/
 key.json
 __pycache__/
-**/__pycache__/
+serivce/__pycache__/
+controller/__pycache__/
+route/__pycache__/
