@@ -8,44 +8,19 @@ from service.userService import (
 
 
 def getUsers():
-    response = getUsersService()
-
-    if response.get("data") == None:
-        response["success"] = False
-        return make_response(jsonify(response), 401)
-
-    response["success"] = True
-    return make_response(jsonify(response), 200)
+    response = getUsersService(request)
+    return response
 
 
 def creatUser():
-    response = createUserService(request.get_json())
-
-    if response.get("data") == None:
-        response["success"] = False
-        return make_response(jsonify(response), 401)
-
-    response["success"] = True
-    return make_response(jsonify(response), 200)
+    response = createUserService(request)
+    return response
 
 
-def updateUser(userId):
-    response = updateUserService(userId)
+def updateUser():
+    response = updateUserService(request)
+    return response
 
-    if response.get("data") == None:
-        response["success"] = False
-        return make_response(jsonify(response), 401)
-
-    response["success"] = True
-    return make_response(jsonify(response), 200)
-
-
-def deleteUser(userId):
-    response = deleteUserService(userId)
-
-    if response.get("data") == None:
-        response["success"] = False
-        return make_response(jsonify(response), 401)
-
-    response["success"] = True
-    return make_response(jsonify(response), 200)
+def deleteUser():
+    response = deleteUserService(request)
+    return response

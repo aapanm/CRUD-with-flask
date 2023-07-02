@@ -5,5 +5,5 @@ blueprint = Blueprint("userRoute", __name__)
 
 blueprint.route("/users", methods=["GET"])(getUsers)
 blueprint.route("/user", methods=["POST"])(creatUser)
-blueprint.route("/user/<int:userId>", methods=["PATCH"])(updateUser)
-blueprint.route("/user/<int:userId>", methods=["DELETE"])(deleteUser)
+blueprint.route("/user", methods=["PATCH"])(updateUser)
+blueprint.route("/user", methods=["DELETE"])(deleteUser)

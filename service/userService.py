@@ -1,33 +1,53 @@
 import json
+from flask import jsonify
+
+# from firebase_admin import credentials, firestore, initialize_app
+# cred = credentials.Certificate("key.json")
+# default_app = initialize_app(cred)
+# db = firestore.client()
+
+from google.cloud import firestore
+db = firestore.Client(project="user-crud-391515")
+
+user_ref = db.collection('user-crud')
 
 
-def getUsersService():
+
+def getUsersService(request):
     try:
-        response = {"data": "All users Data"}
-        return response
+        user_id = request.args.get('userId')
+        if user_id:
+            user = user_ref.document(user_id).get()
+            return jsonify(user.to_dict()), 200
+        else:
+            users = [doc.to_dict() for doc in user_ref.stream()]
+            return jsonify(users), 200
     except Exception as e:
-        return {"Error": e}
+        return f"An Error Occurred: {e}"
 
 
-def createUserService(data):
+def createUserService(request):
     try:
-        response = {"data": f"User created with data {data}"}
-        return response
+        userId = request.json['userId']
+        user_ref.document(str(userId)).set(request.json)
+        return jsonify({"success": True, "data": request.json}), 201
     except Exception as e:
-        return {"Error": e}
+        return f"An Error Occurred: {e}", 400
 
 
-def updateUserService(data):
+def updateUserService(request):
     try:
-        response = {"data": f"User updated with id {data}"}
-        return response
+        userId = request.json['userId']
+        user_ref.document(str(userId)).update(request.json)
+        return jsonify({"success": True, "data": request.json}), 200
     except Exception as e:
-        return {"Error": e}
+        return f"An Error Occurred: {e}"
 
 
-def deleteUserService(data):
+def deleteUserService(request):
     try:
-        response = {"data": f"User deleted with id {data}"}
-        return response
+        todo_id = request.args.get('userId')
+        user_ref.document(todo_id).delete()
+        return jsonify({"success": True}), 200
     except Exception as e:
-        return {"Error": e}
+        return f"An Error Occurred: {e}"
