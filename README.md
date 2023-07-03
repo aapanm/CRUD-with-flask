@@ -233,3 +233,53 @@ This ia simple crud api, with GET, POST, PATCH, DELETE methods
 <a name="cloudRun"></a>
 
 ## Google cloud run deployment
+
+**Docker file**
+
+To deploy, the application in the google cloud run, we will use docker image, which will be uploaded in the google container registry. Then, from google cloud run project we will use that image to deply our application.
+
+The `Dockerfile` file contains all the necessary codes to generate the docke image. To generate image use following codes:
+
+- building image
+
+```bash
+docker build -t <desired image name> .
+```
+
+We can also test the docker image locally by running,
+
+```bash
+docker run -it -8000:8000 <desired image name>
+```
+
+- uploading docker image to docker hub
+
+```bash
+docker login
+docker tag <desired image name> <docker hub id>/<desired image name>
+docker push <docker id>/<desired image name>
+```
+
+Now, we can pull this docker image to our google container registry and deploy to cloud run.
+
+In the gcp console, open terminal and put following codes:
+
+- enabling container registry api
+
+```bash
+gcloud services enable containerregistry.googleapis.com
+```
+
+- pullig docker image
+
+```bash
+docker pull <docker hub id>/<desired image name>
+docker tag <docker hub id>/<desired image-= name> gcr.io/<gcp project id>/<desired image name>
+docker push gcr.io/<gcp project id>/<desired image name>
+```
+
+So far, our application docker image is now uploaded in the container registry, now we have to create a service in the cloud run. Add necessary configuration and select uploaded image. In the container settings, set port number specified in the docker file. Then select unauthenticated invocations to make deployment public. After some time application will be deployed and an URL will be generated.
+
+# Conclusion
+
+In this documentation, I tried to mention all the steps I have followed to deploy a simple flask crud application in the google cloud run.

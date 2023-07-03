@@ -1,11 +1,14 @@
 import json
 from flask import jsonify
 
+# firebase firestore credentials
+
 # from firebase_admin import credentials, firestore, initialize_app
 # cred = credentials.Certificate("path to key.json")
 # default_app = initialize_app(cred)
 # db = firestore.client()
 
+# gcp firestore credentials
 from google.cloud import firestore
 
 db = firestore.Client(project="user-crud-391515")
@@ -13,6 +16,7 @@ db = firestore.Client(project="user-crud-391515")
 user_ref = db.collection("user-crud")
 
 
+# gets a specific or all users from firestore
 def getUsersService(request):
     try:
         user_id = request.args.get("userId")
@@ -26,6 +30,7 @@ def getUsersService(request):
         return f"An Error Occurred: {e}"
 
 
+# stores user data in the firestore
 def createUserService(request):
     try:
         userId = request.json["userId"]
@@ -35,6 +40,7 @@ def createUserService(request):
         return f"An Error Occurred: {e}", 400
 
 
+# updates user in the firestore
 def updateUserService(request):
     try:
         userId = request.json["userId"]
@@ -44,6 +50,7 @@ def updateUserService(request):
         return f"An Error Occurred: {e}"
 
 
+# deletes user in the firestore
 def deleteUserService(request):
     try:
         todo_id = request.args.get("userId")
