@@ -1,6 +1,6 @@
 import json
 from flask import jsonify
-from model.gdcpFirestore import db
+from model.gcpFirestore import db
 
 user_ref = db.collection("user-crud")
 
