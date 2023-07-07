@@ -1,17 +1,6 @@
 import json
 from flask import jsonify
-
-# firebase firestore credentials
-
-# from firebase_admin import credentials, firestore, initialize_app
-# cred = credentials.Certificate("path to key.json")
-# default_app = initialize_app(cred)
-# db = firestore.client()
-
-# gcp firestore credentials
-from google.cloud import firestore
-
-db = firestore.Client(project="user-crud-391515")
+from model.gdcpFirestore import db
 
 user_ref = db.collection("user-crud")
 
