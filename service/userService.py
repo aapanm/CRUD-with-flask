@@ -42,8 +42,8 @@ def updateUserService(request):
 # deletes user in the firestore
 def deleteUserService(request):
     try:
-        todo_id = request.args.get("userId")
-        user_ref.document(todo_id).delete()
+        user_id = request.args.get("userId")
+        user_ref.document(user_id).delete()
         return jsonify({"success": True}), 200
     except Exception as e:
         return f"An Error Occurred: {e}"
