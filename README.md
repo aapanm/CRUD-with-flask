@@ -12,6 +12,7 @@ This documentation describes a simple FLASK CRUD backend server that is deployed
 2. [GCP or Firebase Firestore configuration](#firestore)
 3. [API documentation](#API)
 4. [Google cloud run deployment](#cloudRun)
+5. [Firestore trigger functions](#trigger)
 
 <a name="gettingStarted"></a>
 
@@ -279,6 +280,12 @@ docker push gcr.io/<gcp project id>/<desired image name>
 ```
 
 So far, our application docker image is now uploaded in the container registry, now we have to create a service in the cloud run. Add necessary configuration and select uploaded image. In the container settings, set port number specified in the docker file. Then select unauthenticated invocations to make deployment public. After some time application will be deployed and an URL will be generated.
+
+<a name="trigger"></a>
+
+## Firestore Trigger Functions
+
+With the help of GCP cloud functions we can setup events that can detect the changes happening in the firestore databases. Currently it supports create, update, delete and write operations. For details, https://cloud.google.com/functions/docs/calling/cloud-firestore-1st-gen. This [folder]("/firestoreTrigger) contains the codes for different cloud functions that keeps the count for each user creation, updatation and deletion and stores the data in a firestore collection.
 
 # Conclusion
 
