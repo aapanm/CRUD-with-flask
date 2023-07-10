@@ -7,13 +7,14 @@ from controller.userController import getUsers, creatUser, updateUser, deleteUse
 blueprint = Blueprint("userRoute", __name__)
 
 # route to get users
+blueprint.route("/users/<userId>", methods=["GET"])(getUsers)
 blueprint.route("/users", methods=["GET"])(getUsers)
 
 # route to create user
-blueprint.route("/user", methods=["POST"])(creatUser)
+blueprint.route("/users", methods=["POST"])(creatUser)
 
 # route to update user
-blueprint.route("/user", methods=["PATCH"])(updateUser)
+blueprint.route("/users", methods=["PATCH"])(updateUser)
 
 # route to delete user
-blueprint.route("/user", methods=["DELETE"])(deleteUser)
+blueprint.route("/users/<userId>", methods=["DELETE"])(deleteUser)

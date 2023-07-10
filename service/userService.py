@@ -6,9 +6,9 @@ user_ref = db.collection("user-crud")
 
 
 # gets a specific or all users from firestore
-def getUsersService(request):
+def getUsersService(request, userId):
     try:
-        user_id = request.args.get("userId")
+        user_id = userId
         if user_id:
             user = user_ref.document(user_id).get()
             return jsonify(user.to_dict()), 200
@@ -40,9 +40,9 @@ def updateUserService(request):
 
 
 # deletes user in the firestore
-def deleteUserService(request):
+def deleteUserService(request, userId):
     try:
-        user_id = request.args.get("userId")
+        user_id = userId
         user_ref.document(user_id).delete()
         return jsonify({"success": True}), 200
     except Exception as e:

@@ -11,8 +11,8 @@ from service.userService import (
 
 # function to call service for getting users forwarding incoming request
 # also forwards requests with user id in the query parameter to fetch specific user
-def getUsers():
-    response = getUsersService(request)
+def getUsers(userId=None):
+    response = getUsersService(request, userId)
     return response
 
 
@@ -29,6 +29,6 @@ def updateUser():
 
 
 # function to call service for deleting user forwarding incoming request with user id in the query parameter
-def deleteUser():
-    response = deleteUserService(request)
+def deleteUser(userId=None):
+    response = deleteUserService(request, userId)
     return response

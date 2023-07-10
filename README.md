@@ -167,10 +167,10 @@ This ia simple crud api, with GET, POST, PATCH, DELETE methods
 
 ### Get specific user data
 
-- **URL**: `/users?userId=`
+- **URL**: `/users/{userId}`
 - **Method**: `GET`
-- **Query Param**: `?userId`
-- **Description**: When triggered it fethces relevant user data associated with user id provided in the query parameter
+- **Path Param**: `userId`
+- **Description**: When triggered it fethces relevant user data associated with user id provided in the path parameter
 - **Response**:
 
 ```json
@@ -182,7 +182,7 @@ This ia simple crud api, with GET, POST, PATCH, DELETE methods
 
 ### create user data
 
-- **URL**: `/user`
+- **URL**: `/users`
 - **Method**: `POST`
 - **Request body**: `{"userId": 301, "userName": "Mutsuddy"}`
 - **Description**: When triggered it creates user data provided in the request body
@@ -200,7 +200,7 @@ This ia simple crud api, with GET, POST, PATCH, DELETE methods
 
 ### update user data
 
-- **URL**: `/user`
+- **URL**: `/users`
 - **Method**: `PATCH`
 - **Request body**: `{"userId": 301, "userName": "Aapan"}`
 - **Description**: When triggered it updates user data provided in the request body
@@ -218,10 +218,10 @@ This ia simple crud api, with GET, POST, PATCH, DELETE methods
 
 ### Delete user data
 
-- **URL**: `/user?userId=`
+- **URL**: `/users/{userId}`
 - **Method**: `DELETE`
-- **Query Param**: `?userId=`
-- **Description**: When triggered it deletes relevant user data associated with user id provided in the query paramete
+- **Path Param**: `userId`
+- **Description**: When triggered it deletes relevant user data associated with user id provided in the path parameter
 - **Response**:
 
 ```json
